@@ -1,6 +1,7 @@
 """
 Scrapy 爬虫运行入口 —— 藏药材资源爬虫
 time: 2026-08-19
+author：大江
 """
 
 
@@ -58,7 +59,7 @@ def run_spider(
         raise ValueError(f"未知爬虫 '{spider_name}'，可用爬虫: {available}")
 
     if not output_dir:
-        output_dir = os.path.join(os.getcwd(), "results", spider_name)
+        output_dir = os.path.join(os.getcwd(), "results")
 
     os.makedirs(output_dir, exist_ok=True)
 
@@ -110,7 +111,7 @@ def main():
         "-o",
         "--output",
         default="",
-        help="输出目录 (默认: ./results/nwipb)",
+        help="输出目录 (默认: ./results)",
     )
     parser.add_argument(
         "-c",

@@ -3,6 +3,7 @@
 藏药材资源数据库爬虫 —— 独立 Scrapy 项目。
 
 采集中国科学院西北高原生物研究所（NWIPB）藏药材资源数据库的结构化数据，包括学名、拉丁名、别名、药用部位、功能主治、形态特征、分布及图片等字段。
+https://nwipb.cas.cn/zy/zyc/index.html
 
 ## 功能特性
 
@@ -40,7 +41,8 @@ tibetanMedResourceSpider/
 │   └── test_nwipb_pipeline.py                # Pipeline + 数据模型单元测试
 │
 ├── results/                                  # [生成] 爬虫输出（.gitignore 忽略）
-│   └── nwipb/                                #   JSON 数据 + .scrapy_jobs 断点状态
+│   ├── nwipb_<时间戳>.json                    #   JSON 数据
+│   └── .scrapy_jobs/                          #   断点续爬状态
 │
 └── log/                                      # [生成] 运行日志（.gitignore 忽略）
 ```
@@ -76,14 +78,14 @@ python -m runner --test
 #### 完整爬取（生产使用）
 
 ```bash
-# 完整爬取所有分页（15 页），输出到 results/nwipb/
+# 完整爬取所有分页（15 页），输出到 results/
 python -m runner
 ```
 
 #### 自定义输出与并发
 
 ```bash
-# 指定输出目录（默认: ./results/nwipb）
+# 指定输出目录（默认: ./results）
 python -m runner -o D:\\output
 
 # 调整并发请求数（默认: 5）
@@ -105,17 +107,17 @@ scrapy list                     # 列出项目所有爬虫
 | 参数                | 说明                                          |
 | ------------------- | --------------------------------------------- |
 | `--list`            | 列出所有可用爬虫                               |
-| `-o, --output PATH` | 输出目录（默认: `./results/nwipb`）           |
+| `-o, --output PATH` | 输出目录（默认: `./results`）                |
 | `-c, --concurrency` | 并发请求数（默认: 5）                          |
 | `--no-resume`       | 不从断点续爬，删除进度重新开始                 |
 | `--test`            | 测试模式，只爬取第一页                         |
 
 ## 输出说明
 
-- **藏药材数据 JSON**：`results/nwipb/nwipb_<时间戳>.json`
+- **藏药材数据 JSON**：`results/nwipb_<时间戳>.json`
   - 包含所有字段的完整记录列表
 - **日志**：`log/nwipb_<时间戳>.log`
-- **断点续爬状态**：`results/nwipb/.scrapy_jobs/`
+- **断点续爬状态**：`results/.scrapy_jobs/`
 
 ### 数据字段
 
@@ -141,7 +143,7 @@ from runner import run_spider
 
 run_spider(
     spider_name="nwipb",
-    output_dir="./results/nwipb",
+    output_dir="./results",
     concurrency=5,
     resume=True,
     test_mode=False,

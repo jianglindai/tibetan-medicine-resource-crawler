@@ -32,9 +32,9 @@ TELNETCONSOLE_ENABLED = False
 LOG_LEVEL = "INFO"
 LOG_FORMAT = "%(asctime)s [%(name)s] %(levelname)s: %(message)s"
 
-# 默认输出：scrapy crawl nwipb 时写入 results/nwipb/nwipb_<时间戳>.json
+# 默认输出：scrapy crawl nwipb 时写入 results/nwipb_<时间戳>.json
 FEEDS = {
-    "results/nwipb/nwipb_%(time)s.json": {
+    "results/nwipb_%(time)s.json": {
         "format": "json",
         "encoding": "utf-8",
         "indent": 2,

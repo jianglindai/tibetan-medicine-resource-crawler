@@ -24,7 +24,7 @@ class JsonWriterPipeline:
             "tibetanMedResourceSpider.pipelines.JsonWriterPipeline": 300,
         }
         # 并在 spider 中设置：
-        #   custom_settings = {"OUTPUT_DIR": "results/nwipb"}
+        #   custom_settings = {"OUTPUT_DIR": "results"}
     """
 
     def __init__(self, output_dir: str, filename: str = "output.json"):
@@ -37,7 +37,7 @@ class JsonWriterPipeline:
     @classmethod
     def from_crawler(cls, crawler):
         return cls(
-            output_dir=crawler.settings.get("OUTPUT_DIR", "results/nwipb"),
+            output_dir=crawler.settings.get("OUTPUT_DIR", "results"),
             filename=crawler.settings.get("OUTPUT_FILENAME", "output.json"),
         )
 
@@ -81,7 +81,7 @@ class CsvWriterPipeline:
     @classmethod
     def from_crawler(cls, crawler):
         return cls(
-            output_dir=crawler.settings.get("OUTPUT_DIR", "results/nwipb"),
+            output_dir=crawler.settings.get("OUTPUT_DIR", "results"),
             filename=crawler.settings.get("OUTPUT_CSV_FILENAME", "output.csv"),
         )
 
