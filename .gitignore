@@ -1,0 +1,40 @@
+### python gitignore
+__pycache__/
+*.pyc
+*.pyo
+.venv
+venv/
+.ruff_cache
+
+### scrapy gitignore
+.scrapy/
+.scrapy_jobs/
+
+### common gitignore
+.DS_Store
+.env
+.env.prod
+.env.test
+.env.local
+.env.*.local
+*.log
+log
+logs
+*.log.*
+
+# test
+.pytest_cache
+
+### IDE
+.vscode
+.idea
+.cursor
+.trae
+
+*.secret*
+*.nogit*
+*_private
+*.private
+
+# 爬虫输出结果（不纳入版本控制）
+results/

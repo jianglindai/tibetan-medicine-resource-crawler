@@ -1,0 +1,17 @@
+[project]
+name = "tibetan-med-resource-spider"
+version = "1.0.0"
+description = "藏药材资源数据库爬虫，独立 Scrapy 项目，采集 NWIPB 藏药材资源数据"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+addopts = "-v --tb=short"
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = [
+    "unit: marks tests that run without live services",
+]
+
+[tool.ruff]
+line-length = 120
+lint.select = ["F", "E", "W", "UP"]
